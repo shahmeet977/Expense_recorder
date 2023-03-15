@@ -5,6 +5,7 @@ function ExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [enteredCategory, setEnteredCategory] = useState("Grocery");
 
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
@@ -33,17 +34,23 @@ function ExpenseForm(props) {
     setEnteredDate(event.target.value);
   };
 
+  const categoryChangeHandler = (event) => {
+    setEnteredCategory(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     const expenseData = {
       title: enteredTitle,
       amount: +enteredAmount,
       date: new Date(enteredDate),
+      category: enteredCategory,
     };
     props.onSaveExpenseData(expenseData);
     setEnteredAmount("");
     setEnteredDate("");
     setEnteredTitle("");
+    setEnteredCategory("");
   };
 
   return (
@@ -76,6 +83,18 @@ function ExpenseForm(props) {
             value={enteredDate}
             onChange={dateChangeHandler}
           />
+        </div>
+        <div className="new-expense__control">
+          <label>Category</label>
+          <select
+            id="category"
+            value={enteredCategory}
+            onChange={categoryChangeHandler}
+          >
+            <option value="Grocery">Grocery</option>
+            <option value="Transport">Transport</option>
+            <option value="Rentals">Rentals</option>
+          </select>
         </div>
       </div>
       <div className="new-expense__actions">
