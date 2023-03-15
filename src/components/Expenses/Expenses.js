@@ -4,6 +4,7 @@ import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 import ExpensesPieChart from "./ExpensesPieChart";
+import Table from "../UI/Table";
 import "./Expenses.css";
 
 function Expenses(props) {
@@ -24,7 +25,10 @@ function Expenses(props) {
           onChangeFilter={filterChangeHandler}
         />
         <ExpensesChart expenses={filteredExpenses} />
-        <ExpensesPieChart expenses={filteredExpenses} />
+        {filteredExpenses.length > 0 && (
+          <ExpensesPieChart expenses={filteredExpenses} />
+        )}
+        {filteredExpenses.length > 0 && <Table expenses={filteredExpenses} />}
         <ExpensesList items={filteredExpenses} />
       </Card>
     </div>
