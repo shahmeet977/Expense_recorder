@@ -1,6 +1,7 @@
 import "./Chart.css";
 import ChartBar from "./ChartBar";
 import React from "react";
+import { totalBudget } from "../UI/Table";
 
 function Chart(props) {
   // const dataPointValues = props.dataPoints.map(
@@ -13,7 +14,7 @@ function Chart(props) {
         <ChartBar
           key={dataPoint.id}
           value={dataPoint.value}
-          maxValue={5000}
+          maxValue={totalBudget}
           label={dataPoint.label}
         />
       ))}

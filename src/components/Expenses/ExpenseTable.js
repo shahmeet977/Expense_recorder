@@ -7,7 +7,7 @@ function ExpenseTable(props) {
     yearExpenses += expense.amount;
   }
   // setYearlyExpense(yearExpense);
-  return <td>{yearExpenses}</td>;
+  return <>{yearExpenses}</>;
 }
 
 export default ExpenseTable;

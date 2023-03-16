@@ -3,18 +3,18 @@ import ExpenseTable from "../Expenses/ExpenseTable";
 import styles from "./Table.css";
 import Card from "./Card";
 
+export const totalBudget = 5000;
+
 function Table(props) {
   return (
     <Card>
       <table className={styles.table_head}>
         <tbody>
           <tr>
-            <th>Total Budget</th>
-            <th>Total Expenditure</th>
-          </tr>
-          <tr>
-            <td>5000 Rs.</td>
-            <ExpenseTable expenses={props.expenses} />
+            <th>Total : {totalBudget} Rs.</th>
+            <th>
+              Total Expenditure : <ExpenseTable expenses={props.expenses} />
+            </th>
           </tr>
         </tbody>
       </table>
