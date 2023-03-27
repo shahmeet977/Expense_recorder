@@ -1,0 +1,62 @@
+export const initialState = {
+  expenses: [
+    {
+      id: "e1",
+      title: "TV Recharge",
+      amount: 94.12,
+      date: new Date(2020, 7, 14),
+      category: "Grocery",
+    },
+    {
+      id: "e2",
+      title: "Mobile Recharge",
+      amount: 799.49,
+      date: new Date(2022, 2, 12),
+      category: "Rentals",
+    },
+    {
+      id: "e3",
+      title: "Car Insurance",
+      amount: 294.67,
+      date: new Date(2020, 2, 28),
+      category: "Grocery",
+    },
+    {
+      id: "e4",
+      title: "New Desk (Wooden)",
+      amount: 450,
+      date: new Date(2022, 5, 12),
+      category: "Transport",
+    },
+    {
+      id: "e5",
+      title: "Health Insurance",
+      amount: 190,
+      date: new Date(2021, 2, 28),
+      category: "Rentals",
+    },
+    {
+      id: "e6",
+      title: "Mediclaim",
+      amount: 1000,
+      date: new Date(2021, 5, 12),
+      category: "Transport",
+    },
+    {
+      id: "e7",
+      title: "Health Checkup",
+      amount: 312,
+      date: new Date(2019, 2, 28),
+      category: "Rentals",
+    },
+    {
+      id: "e8",
+      title: "Cab Fare",
+      amount: 230,
+      date: new Date(2019, 5, 12),
+      category: "Transport",
+    },
+  ],
+  isEditing: false,
+  filteredYear: "2022",
+};

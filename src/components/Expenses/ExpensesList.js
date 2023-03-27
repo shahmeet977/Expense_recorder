@@ -14,6 +14,7 @@ function ExpensesList(props) {
           key={expense.id}
           amount={expense.amount}
           date={expense.date}
+          category={expense.category}
         />
       ))}
     </ul>

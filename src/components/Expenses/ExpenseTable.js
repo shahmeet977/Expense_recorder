@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ExpenseTable(props) {
-  // const [yearlyExpense, setYearlyExpense] = useState(0);
   let yearExpenses = 0;
   for (const expense of props.expenses) {
     yearExpenses += expense.amount;
   }
-  // setYearlyExpense(yearExpense);
-  return <>{yearExpenses}</>;
+  return <>{yearExpenses.toFixed(2)}</>;
 }
 
 export default ExpenseTable;

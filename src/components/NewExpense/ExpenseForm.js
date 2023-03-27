@@ -1,41 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { inputActions } from "../../store/input-slice";
 import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
-  const [enteredCategory, setEnteredCategory] = useState("Grocery");
-
-  // const [userInput, setUserInput] = useState({
-  //   enteredTitle: "",
-  //   enteredAmount: "",
-  //   enteredDate: "",
-  // });
+  const dispatch = useDispatch();
+  const enteredTitle = useSelector((state) => state.input.title);
+  const enteredAmount = useSelector((state) => state.input.amount);
+  const enteredDate = useSelector((state) => state.input.date);
+  const enteredCategory = useSelector((state) => state.input.category);
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredTitle: event.target.value };
-    // });
+    dispatch(inputActions.changeTitle(event.target.value));
   };
 
   const amountChangeHandler = (event) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredAmount: event.target.value };
-    // });
-    setEnteredAmount(event.target.value);
+    dispatch(inputActions.changeAmount(event.target.value));
   };
 
   const dateChangeHandler = (event) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredDate: event.target.value };
-    // });
-    setEnteredDate(event.target.value);
+    dispatch(inputActions.changeDate(event.target.value));
   };
 
   const categoryChangeHandler = (event) => {
-    setEnteredCategory(event.target.value);
+    dispatch(inputActions.changeCategory(event.target.value));
   };
 
   const submitHandler = (event) => {
@@ -47,10 +35,10 @@ function ExpenseForm(props) {
       category: enteredCategory,
     };
     props.onSaveExpenseData(expenseData);
-    setEnteredAmount("");
-    setEnteredDate("");
-    setEnteredTitle("");
-    setEnteredCategory("");
+    dispatch(inputActions.emptyTitle());
+    dispatch(inputActions.emptyAmount());
+    dispatch(inputActions.emptyCategory());
+    dispatch(inputActions.emptyDate());
   };
 
   return (
