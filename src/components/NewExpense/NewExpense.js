@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import { expenseActions } from "../../store/expense-slice";
+import { useDispatch, useSelector } from "react-redux";
 
 function NewExpense(props) {
-  const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useDispatch();
+  const isEditing = useSelector((state) => state.expense.isEditing);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
@@ -11,12 +14,16 @@ function NewExpense(props) {
       id: Math.random().toString(),
     };
     props.onAddExpense(expenseData);
-    setIsEditing(false);
+    dispatch(expenseActions.offEditing());
   };
 
-  const startEditingHandler = () => setIsEditing(true);
+  const startEditingHandler = () => {
+    dispatch(expenseActions.onEditing());
+  };
 
-  const stopEditingHandler = () => setIsEditing(false);
+  const stopEditingHandler = () => {
+    dispatch(expenseActions.offEditing());
+  };
 
   return (
     <div className="new-expense">

@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
+import ExpensesPieChart from "./ExpensesPieChart";
+import Table from "../UI/Table";
 import "./Expenses.css";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseActions } from "../../store/expense-slice";
 
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState("2020");
+  const dispatch = useDispatch();
+  const filteredYear = useSelector((state) => state.expense.filteredYear);
+
   const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
+    dispatch(expenseActions.changeFilteredYear(selectedYear));
   };
 
   const filteredExpenses = props.items.filter((expense) => {
@@ -23,6 +29,10 @@ function Expenses(props) {
           onChangeFilter={filterChangeHandler}
         />
         <ExpensesChart expenses={filteredExpenses} />
+        {filteredExpenses.length > 0 && (
+          <ExpensesPieChart expenses={filteredExpenses} />
+        )}
+        {filteredExpenses.length > 0 && <Table expenses={filteredExpenses} />}
         <ExpensesList items={filteredExpenses} />
       </Card>
     </div>

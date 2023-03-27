@@ -1,36 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { inputActions } from "../../store/input-slice";
 import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
-
-  // const [userInput, setUserInput] = useState({
-  //   enteredTitle: "",
-  //   enteredAmount: "",
-  //   enteredDate: "",
-  // });
+  const dispatch = useDispatch();
+  const enteredTitle = useSelector((state) => state.input.title);
+  const enteredAmount = useSelector((state) => state.input.amount);
+  const enteredDate = useSelector((state) => state.input.date);
+  const enteredCategory = useSelector((state) => state.input.category);
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredTitle: event.target.value };
-    // });
+    dispatch(inputActions.changeTitle(event.target.value));
   };
 
   const amountChangeHandler = (event) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredAmount: event.target.value };
-    // });
-    setEnteredAmount(event.target.value);
+    dispatch(inputActions.changeAmount(event.target.value));
   };
 
   const dateChangeHandler = (event) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredDate: event.target.value };
-    // });
-    setEnteredDate(event.target.value);
+    dispatch(inputActions.changeDate(event.target.value));
+  };
+
+  const categoryChangeHandler = (event) => {
+    dispatch(inputActions.changeCategory(event.target.value));
   };
 
   const submitHandler = (event) => {
@@ -39,11 +32,13 @@ function ExpenseForm(props) {
       title: enteredTitle,
       amount: +enteredAmount,
       date: new Date(enteredDate),
+      category: enteredCategory,
     };
     props.onSaveExpenseData(expenseData);
-    setEnteredAmount("");
-    setEnteredDate("");
-    setEnteredTitle("");
+    dispatch(inputActions.emptyTitle());
+    dispatch(inputActions.emptyAmount());
+    dispatch(inputActions.emptyCategory());
+    dispatch(inputActions.emptyDate());
   };
 
   return (
@@ -76,6 +71,18 @@ function ExpenseForm(props) {
             value={enteredDate}
             onChange={dateChangeHandler}
           />
+        </div>
+        <div className="new-expense__control">
+          <label>Category</label>
+          <select
+            id="category"
+            value={enteredCategory}
+            onChange={categoryChangeHandler}
+          >
+            <option value="Grocery">Grocery</option>
+            <option value="Transport">Transport</option>
+            <option value="Rentals">Rentals</option>
+          </select>
         </div>
       </div>
       <div className="new-expense__actions">
