@@ -35,23 +35,23 @@ export const Skills = () => {
                 <div className="col-12">
                     <div className="skill-bx wow zoomIn">
                         <h2>Skills</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br></br> Lorem Ipsum has been the industry's standard dummy text.</p>
+                        <p>I have prior experience with C/C++, HTML, CSS,  JavaScript, React.js, Next.js and Redux.<br></br> My area of interest lies in Problem solving, Competitive programming, Software development and I am well versed with Data Structures and Algorithms, Computer Science Fundamentals like OOPS, DBMS, Operating Systems, Computer Networks, and have solved over 1000 DSA, CP questions on various platforms. </p>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme skill-slider">
                             <div className="item">
                                 <img src={meter1} alt="Image" />
-                                <h5>Web Development</h5>
+                                <h5>Data Structures And Algorithms</h5>
                             </div>
                             <div className="item">
                                 <img src={meter2} alt="Image" />
-                                <h5>Brand Identity</h5>
+                                <h5>C++ / C</h5>
                             </div>
                             <div className="item">
                                 <img src={meter3} alt="Image" />
-                                <h5>Logo Design</h5>
+                                <h5>JavaScript, React.js</h5>
                             </div>
                             <div className="item">
                                 <img src={meter1} alt="Image" />
-                                <h5>Web Development</h5>
+                                <h5>Redux, Next.js</h5>
                             </div>
                         </Carousel>
                     </div>
